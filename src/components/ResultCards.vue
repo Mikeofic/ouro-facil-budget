@@ -56,8 +56,8 @@ const emit = defineEmits<{
       <h3 class="text-base font-semibold text-zinc-200">Mensagem gerada</h3>
       <pre class="whitespace-pre-wrap text-sm">{{ props.mensagem }}</pre>
       <div class="flex justify-center gap-2">
-        <button class="px-3 py-2 rounded-md bg-blue-600 hover:bg-blue-500 disabled:opacity-50" :disabled="props.margemPercent < props.margemMinimaPercent" @click="emit('copyMessage')">Copiar</button>
-        <button class="px-3 py-2 rounded-md bg-emerald-600 hover:bg-emerald-500 disabled:opacity-50" :disabled="props.margemPercent < props.margemMinimaPercent" @click="emit('openWhatsApp')">WhatsApp</button>
+        <button class="px-3 py-2 rounded-md bg-blue-600 hover:bg-blue-500 text-white disabled:opacity-50" :disabled="props.margemPercent < props.margemMinimaPercent" @click="emit('copyMessage')">Copiar</button>
+        <button class="px-3 py-2 rounded-md bg-green-600 hover:bg-green-500 text-white disabled:opacity-50" :disabled="props.margemPercent < props.margemMinimaPercent" @click="emit('openWhatsApp')">WhatsApp</button>
       </div>
     </div>
   </section>

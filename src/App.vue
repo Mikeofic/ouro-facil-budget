@@ -160,7 +160,7 @@ const paged = computed(() => {
   const start = (page.value - 1) * perPage.value
   return filtered.value.slice(start, start + perPage.value)
 })
-// function goTo(p: number) { page.value = Math.min(Math.max(1, p), totalPages.value) }
+function goTo(p: number) { page.value = Math.min(Math.max(1, p), totalPages.value) }
 
 // Clipboard & WhatsApp
 async function copyMessage() {
@@ -218,7 +218,7 @@ function toast(text: string, type: 'success'|'error' = 'success') {
         :margemPercent="margemPercent"
         :margemMinimaPercent="margemMinimaPercent"
         :errors="errors"
-        @update:cliente="v => (cliente = v)"
+        @update:cliente="(v: string) => (cliente = v)"
         @update:pesoEmGramas="v => (pesoEmGramas = v)"
         @update:precoPorGrama="v => (precoPorGrama = v)"
         @update:custoMercadoriaPorGrama="v => (custoMercadoriaPorGrama = v)"

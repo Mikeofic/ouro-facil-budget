@@ -95,8 +95,8 @@ const emit = defineEmits<{
     <div class="flex items-center justify-between">
       <p class="text-xs text-neutral-400">Página {{ props.page }} de {{ props.totalPages }}</p>
       <div class="flex gap-2">
-        <button class="px-3 py-1.5 rounded-md bg-zinc-800 hover:bg-zinc-700 disabled:opacity-50" :disabled="props.page <= 1" @click="emit('update:page', props.page - 1)">Anterior</button>
-        <button class="px-3 py-1.5 rounded-md bg-zinc-800 hover:bg-zinc-700 disabled:opacity-50" :disabled="props.page >= props.totalPages" @click="emit('update:page', props.page + 1)">Próxima</button>
+        <button class="px-3 py-1.5 rounded-md bg-zinc-800 hover:bg-zinc-700 text-white disabled:opacity-50" :disabled="props.page <= 1" @click="emit('update:page', props.page - 1)">Anterior</button>
+        <button class="px-3 py-1.5 rounded-md bg-zinc-800 hover:bg-zinc-700 text-white disabled:opacity-50" :disabled="props.page >= props.totalPages" @click="emit('update:page', props.page + 1)">Próxima</button>
       </div>
     </div>
   </section>

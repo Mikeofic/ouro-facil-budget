@@ -56,7 +56,7 @@ function asNumber(e: Event): number {
       </div>
       <div class="grid grid-cols-2 gap-3">
         <label class="block">
-          <span class="text-sm text-zinc-400">Custo por grama (mercadoria)</span>
+          <span class="text-sm text-zinc-400">Custo por grama</span>
           <input :value="props.custoMercadoriaPorGrama" @input="emit('update:custoMercadoriaPorGrama', asNumber($event))" type="number" min="0" step="0.01" class="mt-1 h-10 w-full rounded-md bg-zinc-900 border border-zinc-800 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-violet-600" placeholder="Ex.: 650,00" />
         </label>
         <label class="block">
@@ -82,9 +82,9 @@ function asNumber(e: Event): number {
       </label>
 
       <div class="flex flex-wrap gap-2">
-        <button class="px-3 py-2 rounded-md bg-violet-600 hover:bg-violet-500 shadow-sm" @click="emit('saveSettings')">Salvar preferências</button>
-        <button class="px-3 py-2 rounded-md bg-zinc-800 hover:bg-zinc-700 disabled:opacity-50" :disabled="props.margemPercent < props.margemMinimaPercent" @click="emit('copyMessage')">Copiar texto</button>
-        <button class="px-3 py-2 rounded-md bg-emerald-600 hover:bg-emerald-500 disabled:opacity-50" :disabled="props.margemPercent < props.margemMinimaPercent" @click="emit('openWhatsApp')">WhatsApp</button>
+        <button class="px-3 py-2 rounded-md bg-violet-600 hover:bg-violet-500 text-white shadow-sm" @click="emit('saveSettings')">Salvar preferências</button>
+        <button class="px-3 py-2 rounded-md bg-blue-600 hover:bg-blue-500 text-white disabled:opacity-50" :disabled="props.margemPercent < props.margemMinimaPercent" @click="emit('copyMessage')">Copiar texto</button>
+        <button class="px-3 py-2 rounded-md bg-green-600 hover:bg-green-500 text-white disabled:opacity-50" :disabled="props.margemPercent < props.margemMinimaPercent" @click="emit('openWhatsApp')">WhatsApp</button>
       </div>
 
       <div v-if="props.errors.length" class="rounded-md border border-rose-700 bg-rose-900/30 p-3 text-sm">
