@@ -170,7 +170,6 @@ const paged = computed(() => {
   const start = (page.value - 1) * perPage.value
   return filtered.value.slice(start, start + perPage.value)
 })
-function goTo(p: number) { page.value = Math.min(Math.max(1, p), totalPages.value) }
 
 // Clipboard & WhatsApp
 async function copyMessage() {
