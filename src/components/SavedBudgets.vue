@@ -25,6 +25,7 @@ const props = defineProps<{
   totalPages: number
   brl: (n: number) => string
   copySavedMessage: (msg: string) => void | Promise<void>
+  deleteBudget: (id: string) => void
 }>()
 
 const emit = defineEmits<{
@@ -47,7 +48,7 @@ const emit = defineEmits<{
     </div>
 
     <!-- Tabela (desktop) -->
-    <div class="hidden md:block rounded-xl bg-zinc-900/60 backdrop-blur overflow-hidden">
+    <div class="hidden md:block of-panel overflow-hidden">
       <table class="min-w-full text-sm">
         <thead class="bg-zinc-900/70">
           <tr>
@@ -67,7 +68,8 @@ const emit = defineEmits<{
             <td class="text-left px-4 py-2 align-top">{{ props.brl(b.precoAVista) }}</td>
             <td class="text-left px-4 py-2 align-top">{{ props.brl(b.precoAPrazo) }}</td>
             <td class="text-left px-4 py-2 align-top">
-              <button class="px-2 py-1 rounded bg-blue-600 hover:bg-blue-500 text-white text-xs mr-1" @click="props.copySavedMessage(b.mensagem)">Copiar</button>
+              <button class="of-btn of-btn--green of-btn--sm" @click="props.copySavedMessage(b.mensagem)">Copiar</button>
+              <button class="of-btn of-btn--green of-btn--sm" style="margin-left: 8px;" @click="props.deleteBudget(b.id)">Excluir</button>
             </td>
           </tr>
         </tbody>
@@ -75,7 +77,7 @@ const emit = defineEmits<{
     </div>
     <!-- Cards (mobile) -->
     <div class="block md:hidden space-y-3">
-      <div v-for="b in props.paged" :key="b.id" class="rounded-xl bg-zinc-900/60 backdrop-blur p-4 flex flex-col gap-2">
+      <div v-for="b in props.paged" :key="b.id" class="of-panel p-4 flex flex-col gap-2">
         <div class="flex justify-between items-center">
           <span class="font-semibold text-violet-300">{{ b.cliente || '--' }}</span>
           <span class="text-xs text-neutral-400">{{ new Date(b.criadoEmISO).toLocaleDateString() }}</span>
@@ -86,7 +88,8 @@ const emit = defineEmits<{
           <span>A prazo: <span class="font-semibold">{{ props.brl(b.precoAPrazo) }}</span></span>
         </div>
         <div class="flex gap-2 mt-2">
-          <button class="px-3 py-1 rounded bg-blue-600 hover:bg-blue-500 text-white text-xs" @click="props.copySavedMessage(b.mensagem)">Copiar</button>
+          <button class="of-btn of-btn--green of-btn--sm" @click="props.copySavedMessage(b.mensagem)">Copiar</button>
+          <button class="of-btn of-btn--green of-btn--sm" @click="props.deleteBudget(b.id)">Excluir</button>
         </div>
       </div>
     </div>
@@ -95,8 +98,8 @@ const emit = defineEmits<{
     <div class="flex items-center justify-between">
       <p class="text-xs text-neutral-400">Página {{ props.page }} de {{ props.totalPages }}</p>
       <div class="flex gap-2">
-        <button class="px-3 py-1.5 rounded-md bg-zinc-800 hover:bg-zinc-700 text-white disabled:opacity-50" :disabled="props.page <= 1" @click="emit('update:page', props.page - 1)">Anterior</button>
-        <button class="px-3 py-1.5 rounded-md bg-zinc-800 hover:bg-zinc-700 text-white disabled:opacity-50" :disabled="props.page >= props.totalPages" @click="emit('update:page', props.page + 1)">Próxima</button>
+        <button class="of-btn of-btn--green of-btn--sm" :disabled="props.page <= 1" @click="emit('update:page', props.page - 1)">Anterior</button>
+        <button class="of-btn of-btn--green of-btn--sm" :disabled="props.page >= props.totalPages" @click="emit('update:page', props.page + 1)">Próxima</button>
       </div>
     </div>
   </section>

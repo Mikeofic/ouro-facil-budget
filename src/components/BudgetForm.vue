@@ -37,7 +37,7 @@ function asNumber(e: Event): number {
 </script>
 
 <template>
-  <section class="space-y-4">
+  <section class="of-panel p-4 sm:p-5 space-y-4">
     <h2 class="text-base font-medium text-violet-300">Dados do orçamento</h2>
     <div class="space-y-3">
       <label class="block">
@@ -82,9 +82,9 @@ function asNumber(e: Event): number {
       </label>
 
       <div class="flex flex-wrap gap-2">
-        <button class="px-3 py-2 rounded-md bg-violet-600 hover:bg-violet-500 text-white shadow-sm" @click="emit('saveSettings')">Salvar preferências</button>
-        <button class="px-3 py-2 rounded-md bg-blue-600 hover:bg-blue-500 text-white disabled:opacity-50" :disabled="props.margemPercent < props.margemMinimaPercent" @click="emit('copyMessage')">Copiar texto</button>
-        <button class="px-3 py-2 rounded-md bg-green-600 hover:bg-green-500 text-white disabled:opacity-50" :disabled="props.margemPercent < props.margemMinimaPercent" @click="emit('openWhatsApp')">WhatsApp</button>
+        <button class="of-btn of-btn--green" @click="emit('saveSettings')">Salvar preferências</button>
+        <button class="of-btn of-btn--green" :disabled="props.margemPercent < props.margemMinimaPercent" @click="emit('copyMessage')">Copiar texto</button>
+        <button class="of-btn of-btn--green" :disabled="props.margemPercent < props.margemMinimaPercent" @click="emit('openWhatsApp')">WhatsApp</button>
       </div>
 
       <div v-if="props.errors.length" class="rounded-md border border-rose-700 bg-rose-900/30 p-3 text-sm">

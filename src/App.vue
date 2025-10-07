@@ -137,6 +137,16 @@ function addBudget() {
   toast('Orçamento salvo!')
 }
 
+function deleteBudget(id: string) {
+  if (!confirm('Deseja excluir este orçamento?')) return
+  budgets.value = budgets.value.filter(b => b.id !== id)
+  saveBudgets()
+  // Ajusta página se necessário
+  const tp = Math.max(1, Math.ceil(filtered.value.length / perPage.value))
+  if (page.value > tp) page.value = tp
+  toast('Orçamento excluído!')
+}
+
 // Busca & paginação
 const search = ref('')
 const page = ref(1)
@@ -197,7 +207,7 @@ function toast(text: string, type: 'success'|'error' = 'success') {
 </script>
 
 <template>
-  <div class="min-h-screen bg-gradient-to-br from-indigo-950 via-zinc-950 to-black text-zinc-100">
+  <div class="of-app-bg">
     <!-- Topbar -->
     <header class="sticky top-0 z-20 border-b border-zinc-800/70 bg-zinc-900/60 backdrop-blur">
       <div class="mx-auto max-w-6xl px-3 sm:px-4 py-6 flex items-center justify-between">
@@ -206,7 +216,8 @@ function toast(text: string, type: 'success'|'error' = 'success') {
     </header>
 
     <main class="mx-auto max-w-6xl px-3 sm:px-4 lg:px-16 py-6 grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
-      <BudgetForm
+      <section class="of-section of-section--animated">
+        <BudgetForm
         :cliente="cliente"
         :pesoEmGramas="pesoEmGramas"
         :precoPorGrama="precoPorGrama"
@@ -229,9 +240,11 @@ function toast(text: string, type: 'success'|'error' = 'success') {
         @saveSettings="saveSettings"
         @copyMessage="copyMessage"
         @openWhatsApp="openWhatsApp"
-      />
+        />
+      </section>
 
-      <ResultCards
+      <section class="of-section of-section--animated">
+        <ResultCards
         :custoTotal="custoTotal"
         :lucroBrutoAVista="lucroBrutoAVista"
         :margemPercent="margemPercent"
@@ -245,9 +258,11 @@ function toast(text: string, type: 'success'|'error' = 'success') {
         :margemMinimaPercent="margemMinimaPercent"
         @copyMessage="copyMessage"
         @openWhatsApp="openWhatsApp"
-      />
+        />
+      </section>
 
-      <SavedBudgets
+      <section class="of-section of-section--animated md:col-span-2">
+        <SavedBudgets
         :paged="paged"
         :search="search"
         :startDate="startDate"
@@ -256,11 +271,13 @@ function toast(text: string, type: 'success'|'error' = 'success') {
         :totalPages="totalPages"
         :brl="brl"
         :copySavedMessage="copySavedMessage"
+        :deleteBudget="deleteBudget"
         @update:search="v => (search = v)"
         @update:startDate="v => (startDate = v)"
         @update:endDate="v => (endDate = v)"
         @update:page="v => (page = v)"
-      />
+        />
+      </section>
     </main>
 
     <Toasts :toasts="toasts" />

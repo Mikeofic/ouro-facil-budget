@@ -15,6 +15,128 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* ===== Ouro Fácil: estilos globais (CSS puro) ===== */
+:root {
+  /* Paleta base */
+  --of-bg-1: #0a0f1a;
+  --of-bg-2: #070b12;
+  --of-text: #e5e7eb;
+  --of-muted: #a1a1aa;
+  /* Verdes (compatíveis e legíveis) */
+  --of-green-600: #16a34a; /* principal */
+  --of-green-500: #22c55e; /* hover */
+  --of-green-700: #15803d; /* borda/sombra */
+  /* Acentos para borda animada */
+  --of-accent-1: #16a34a;
+  --of-accent-2: #22c55e;
+  --of-accent-3: #3b82f6;
+}
+
+/* Fundo da aplicação com melhor contraste */
+.of-app-bg {
+  min-height: 100vh;
+  background: radial-gradient(1200px circle at 10% 10%, rgba(34,197,94,0.12), transparent 40%),
+              radial-gradient(800px circle at 80% 20%, rgba(59,130,246,0.12), transparent 35%),
+              linear-gradient(135deg, var(--of-bg-1), var(--of-bg-2));
+  color: var(--of-text);
+}
+
+/* Painéis com contraste e borda animada */
+.of-panel {
+  position: relative;
+  border-radius: 12px;
+  background: rgba(12, 16, 22, 0.9);
+  border: 1px solid rgba(128, 128, 128, 0.22);
+}
+.of-panel--animated {
+  border-color: rgba(34, 197, 94, 0.40);
+  box-shadow: 0 0 0 1px rgba(34, 197, 94, 0.25), inset 0 0 16px rgba(34, 197, 94, 0.12);
+  animation: of-border-glow 4s ease-in-out infinite;
+}
+@keyframes of-border-glow {
+  0%, 100% {
+    box-shadow: 0 0 0 1px rgba(34, 197, 94, 0.25), inset 0 0 16px rgba(34, 197, 94, 0.12);
+  }
+  50% {
+    box-shadow: 0 0 0 2px rgba(34, 197, 94, 0.45), inset 0 0 28px rgba(34, 197, 94, 0.22);
+  }
+}
+
+/* Seções com fundo diferenciado do app */
+.of-section {
+  position: relative;
+  border-radius: 18px;
+  border: 1px solid rgba(128, 128, 128, 0.22);
+  background: linear-gradient(180deg,
+    rgba(14, 18, 23, 0.85),
+    rgba(9, 13, 18, 0.85)
+  );
+  padding: 16px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.28);
+}
+.of-section--animated {
+  box-shadow: 0 0 0 1px rgba(128, 128, 128, 0.22);
+  animation: of-section-glow 6s ease-in-out infinite;
+}
+@keyframes of-section-glow {
+  0%, 100% {
+    box-shadow: 0 0 0 1px rgba(128, 128, 128, 0.20);
+  }
+  50% {
+    box-shadow: 0 0 0 1px rgba(128, 128, 128, 0.28);
+  }
+}
+
+/* Botões (CSS puro, compatíveis) */
+.of-btn {
+  appearance: none;
+  -webkit-appearance: none;
+  border: none;
+  border-radius: 10px;
+  padding: 0.625rem 1rem;
+  font-weight: 600;
+  line-height: 1.25;
+  color: #fff;
+  cursor: pointer;
+  transition: transform 120ms ease, filter 160ms ease, box-shadow 160ms ease;
+  box-shadow: 0 1px 0 rgba(0,0,0,0.5), 0 6px 12px rgba(0,0,0,0.35);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.of-btn--green {
+  background: linear-gradient(180deg, var(--of-green-600), var(--of-green-700));
+  border: 1px solid rgba(21, 128, 61, 0.6);
+}
+.of-btn--green:hover {
+  filter: brightness(1.08);
+  box-shadow: 0 2px 0 rgba(0,0,0,0.5), 0 10px 18px rgba(0,0,0,0.4);
+}
+.of-btn--green:active {
+  transform: translateY(1px);
+}
+.of-btn[disabled], .of-btn[aria-disabled="true"] {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+.of-btn--sm { padding: 0.4rem 0.75rem; font-size: 0.875rem; }
+
+/* Inputs com contraste (opcional) */
+.of-input {
+  height: 2.5rem; /* 40px */
+  width: 100%;
+  border-radius: 8px;
+  background: #0e1217;
+  border: 1px solid rgba(255,255,255,0.12);
+  color: var(--of-text);
+  padding: 0.5rem 0.75rem;
+}
+.of-input:focus {
+  outline: none;
+  border-color: rgba(16, 185, 129, 0.65);
+  box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.35);
+}
+
 a {
   font-weight: 500;
   color: #646cff;
